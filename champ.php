@@ -56,7 +56,7 @@ if ($action == 'edit' && $user->rights->mylist->creer)
 		$error++;
 		$mesg='<div class="error">'.$langs->trans("ErrorFieldRequired",$langs->transnoentities("Name")).'</div>';
 	}
-	
+
 	if (! $error)
 	{
 		$object->idfield	= $rowid;
@@ -97,7 +97,7 @@ if ($action == 'add' && ! $_POST["cancel"] && $user->rights->mylist->creer)
 		$error++;
 		$mesg='<div class="error">'.$langs->trans("ErrorFieldRequired",$langs->transnoentities("fieldName")).'</div>';
 	}
-	
+
 	if (empty($_POST["nameField"]))
 	{
 		$error++;
@@ -118,14 +118,14 @@ if ($action == 'add' && ! $_POST["cancel"] && $user->rights->mylist->creer)
 		$object->filter		= GETPOST("filter");
 		$object->width		= GETPOST("width");
 		$object->filterinit	= GETPOST("filterinit");
-		
+
 		// r�cup�ration de la position du dernier champ
 		$object->pos		= $object->getlastpos($mylistid);
-		
+
 		$rowid = $object->addField($user, $mylistid);
 		if ($rowid >0)
 		{
-			header("Location: ".DOL_URL_ROOT.'/mylist/champ.php?mylistid='.$mylistid.'&rowid='.$rowid);
+			header("Location: ".dol_buildpath('/mylist/champ.php').'?mylistid='.$mylistid.'&rowid='.$rowid);
 			exit;
 		}
 		else
@@ -145,7 +145,7 @@ if ($action == 'confirm_delete' && GETPOST('confirm')== "yes" && $user->rights->
 {
 	if ($object->deleteField($user, $rowid) == 1)
 	{
-		header("Location: ".DOL_URL_ROOT.'/mylist/card.php?rowid='.$mylistid);
+		header("Location: ".dol_buildpath('/mylist/card.php').'?rowid='.$mylistid);
 		exit;
 	}
 	else
@@ -175,7 +175,7 @@ else
 $form = new Form($db);
 if ($action == 'delete')
 {
-	$ret=$form->form_confirm($_SERVER["PHP_SELF"]."?mylistid=".$mylistid.'&rowid='.$rowid, 
+	$ret=$form->form_confirm($_SERVER["PHP_SELF"]."?mylistid=".$mylistid.'&rowid='.$rowid,
 		$langs->trans("DeleteAField"),$langs->trans("ConfirmDeleteAField"),"confirm_delete");
 	if ($ret == 'html') print '<br>';
 }
@@ -188,7 +188,7 @@ dol_fiche_head($head, 'list', $langs->trans("Mylist"),0,'list');
 
 print '<table class="border" width="100%">';
 
-$linkback = '<a href="'.DOL_URL_ROOT.'/mylist/card.php?rowid='.$mylistid.'">'.$langs->trans("BackTomyList").'</a>';
+$linkback = '<a href="'.dol_buildpath('/mylist/card.php').'?rowid='.$mylistid.'">'.$langs->trans("BackTomyList").'</a>';
 
 
 // Label
@@ -216,12 +216,12 @@ if (! empty($rowid))
 	/*
 	 * Fiche champ en mode edit
 	 */
-	 
+
 	print '<input type="hidden" name="action" value="edit">';
 	print '<input type="hidden" name="mylistid" value="'.$mylistid.'">';
-	
+
 	print '<table class="border" width="50%">';
-	
+
 	// database fieldname = key
 	print '<tr><td class="fieldrequired">'.$langs->trans("fieldName").'</td>';
 	print '<td><input type=text name="field" value="'.$ArrayFields['field'].'"></td></tr>'."\n";
@@ -237,7 +237,7 @@ if (! empty($rowid))
 	// type of Fields
 	print '<tr><td >'.$langs->trans("Type").'</td>';
 	print '<td>'.$object->getSelectTypeFields($ArrayFields['type']).'</td></tr>'."\n";
-	
+
 	// element of Fields
 	print '<tr><td >'.$langs->trans("ElementField").'</td>';
 	print '<td><input type=text size=60 name="param" value="'.$ArrayFields['param'].'"></td></tr>'."\n";
@@ -250,7 +250,7 @@ if (! empty($rowid))
 	print '<tr><td >'.$langs->trans("align").'</td><td>';
 	print $form->selectarray('align', array('left'=>'gauche','center'=>'milieu','right'=>'droite'), $ArrayFields['align']);
 	print '</td></tr>'."\n";
-	
+
 	print '<tr><td >'.$langs->trans("enabled").'</td>';
 	print '<td>';
 	print $form->selectyesno('enabled', ($ArrayFields['enabled']=='1'?'yes':'no'), 1);
@@ -279,14 +279,14 @@ if (! empty($rowid))
 		print '<td>';
 		print $form->selectyesno('sumreport', ($ArrayFields['sumreport']=='1'?'yes':'no'), 1);
 		print '</td></tr>'."\n";
-		
+
 		// average
 		print '<tr><td >'.$langs->trans("avgreport").'</td>';
 		print '<td>';
 		print $form->selectyesno('avgreport', ($ArrayFields['avgreport']=='1'?'yes':'no'), 1);
 		print '</td></tr>'."\n";
 
-		
+
 	}
 
 }
@@ -294,7 +294,7 @@ else
 {
 	print '<input type="hidden" name="action" value="add">';
 	print '<table class="border" width="50%">';
-	
+
 	// database fieldname = key
 	print '<tr><td class="fieldrequired">'.$langs->trans("fieldName").'</td>';
 	print '<td><input type=text name="field" value=""></td></tr>'."\n";
@@ -310,7 +310,7 @@ else
 	// type of Fields
 	print '<tr><td >'.$langs->trans("Type").'</td>';
 	print '<td>'.$object->getSelectTypeFields("").'</td></tr>'."\n";
-	
+
 	// element of Fields
 	print '<tr><td >'.$langs->trans("ElementField").'</td>';
 	print '<td><input type=text name="param" value=""></td></tr>'."\n";

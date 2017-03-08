@@ -56,13 +56,13 @@ print '<br>';
 print $langs->trans("PatasMonkeyPresent").'<br><br>';
 
 $url='http://www.patas-monkey.com';
-print '<a href="'.$url.'" target="_blank"><img border="0" width="180" src="'.DOL_URL_ROOT.'/mylist/img/patas-monkey_logo.png"></a>';
+print '<a href="'.$url.'" target="_blank"><img border="0" width="180" src="'.dol_buildpath('/mylist/img/patas-monkey_logo.png').'"></a>';
 
 
 print '<br><br>';
 print $langs->trans("MoreModulesLink").'<br>';
 $url='http://www.dolistore.com/search.php?search_query=benke';
-print '<a href="'.$url.'" target="_blank"><img border="0" width="180" src="'.DOL_URL_ROOT.'/theme/dolistore_logo.png"></a><br><br><br>';
+print '<a href="'.$url.'" target="_blank"><img border="0" width="180" src="'.dol_buildpath('/mylist/img/patas-monkey_logo.png').'"></a><br><br><br>';
 
 print '<br><br>';
 print_titre($langs->trans("Changelog"));

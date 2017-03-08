@@ -31,16 +31,16 @@
 function mylist_admin_prepare_head ()
 {
 	global $langs, $conf, $user;
-	
+
 	$h = 0;
 	$head = array();
-	
-	$head[$h][0] = DOL_URL_ROOT.'/mylist/admin/admin.php';
+
+	$head[$h][0] = dol_buildpath('/mylist/admin/admin.php');
 	$head[$h][1] = $langs->trans("Setup");
 	$head[$h][2] = 'admin';
-	
+
 	$h++;
-	$head[$h][0] = DOL_URL_ROOT.'/mylist/admin/about.php';
+	$head[$h][0] = dol_buildpath('/mylist/admin/about.php');
 	$head[$h][1] = $langs->trans("About");
 	$head[$h][2] = 'about';
 

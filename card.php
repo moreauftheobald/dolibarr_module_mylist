@@ -445,7 +445,7 @@ else
 
 	print '<table class="border" width="100%">';
 
-	$linkback = '<a href="'.DOL_URL_ROOT.'/mylist/list.php">'.$langs->trans("BackToList").'</a>';
+	$linkback = '<a href="'.dol_buildpath('/mylist/list.php').'">'.$langs->trans("BackToList").'</a>';
 
 	// Label
 	print '<tr><td width=25%>'.$langs->trans("Label").'</td><td >'.$object->label.'</td></tr>';
