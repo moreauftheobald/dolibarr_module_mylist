@@ -83,7 +83,7 @@ if ($action == 'add' && $user->rights->mylist->creer)
 		$object->querydo=$querydo;
 
 		$object->fieldinit	= $_POST["fieldinit"];
-		
+
 		$result = $object->create($user);
 		if ($result == 0)
 		{
@@ -129,7 +129,7 @@ elseif ($action == 'validate' && $user->rights->mylist->creer)
 	$querydo=str_replace( "#INS#", "INSERT", $querydo);
 	$querydo=str_replace( "#DEL#", "DELETE", $querydo);
 	$object->querydo=	$querydo;
-	$object->fieldinit=	GETPOST("fieldinit"); 
+	$object->fieldinit=	GETPOST("fieldinit");
 
 	$object->update();
 }
@@ -137,7 +137,7 @@ elseif ($action == 'importation' && $user->rights->mylist->creer)
 {
 	if (GETPOST("importexport"))
 	{
-		
+
 		$object->importlist(GETPOST("importexport"));
 		$rowid=$object->rowid;
 		if ($rowid == 0)
@@ -224,12 +224,12 @@ if ($action == 'create' && $user->rights->mylist->creer)
 	print '<tr><td>'.$langs->trans("author").'</td><td><input size="30" type="text" name="author" value="'.$_POST["author"].'"></td></tr>';
 
 	if ($conf->global->MYLIST_CSV_EXPORT =="1")
-	{	
+	{
 		print '<tr><td>'.$langs->trans("ExportListCSV").'</td><td align=left >';
 		print $form->selectyesno('export',"",1);
 		print '</td></tr>';
 	}
-	
+
 	if ($conf->global->MYLIST_ADDON_PDF)
 	{
 		// Load array def with activated templates
@@ -265,11 +265,11 @@ if ($action == 'create' && $user->rights->mylist->creer)
 	// querydo
 	print '<tr><td valign=top>'.$langs->trans("QueryDo").'<br>'.$langs->trans("explainbypassSQLinjectionDo").'</td>';
 	print '<td ><textarea name="querydo" cols=100 rows=10>'.$_POST["querydo"].'</textarea></td></tr>';
-	
+
 	// fieldinit value
 	print '<tr><td valign=top>'.$langs->trans("DefaultInitFields").'</td>';
 	print '<td ><textarea name="fieldinit" cols=100 rows=5>'.$object->fieldinit.'</textarea></td></tr>';
-	
+
 	print '</table>';
 
 	print '<br><center>';
@@ -303,7 +303,7 @@ elseif ($action == 'importexport' && $user->rights->mylist->creer)
 	print '<td><textarea name=importexport cols=132 rows=20>';
 	if($rowid)
 		print $object->getexporttable($rowid);
-	print '</textarea></td></tr>';	
+	print '</textarea></td></tr>';
 	print '</table>';
 	print '<br><center>';
 	print '<input type="submit" class="button" value="'.$langs->trans("ImportMyList").'">';
@@ -314,18 +314,18 @@ elseif ($action == 'importexport' && $user->rights->mylist->creer)
 elseif ($action == 'update' && $user->rights->mylist->creer)
 {
 	print_fiche_titre($langs->trans("UpdateMylist"));
-	
+
 	dol_htmloutput_mesg($mesg);
 
 	$ret=$object->fetch( $rowid);
-	
+
 	print '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
 	print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';
 	print '<input type="hidden" name="action" value="validate">';
 	print '<input type="hidden" name="rowid" value="'.$rowid.'"></td></tr>';
-	
+
 	print '<table class="border" width="100%">';
-	
+
 	// label
 	print '<tr><td><span class="fieldrequired">'.$langs->trans("Label").'</span></td><td><input size="30" type="text" name="label" value="'.$object->label.'"></td></tr>';
 
@@ -356,14 +356,14 @@ elseif ($action == 'update' && $user->rights->mylist->creer)
 		print '<input size="30" type="text" name="author" value="'.$object->author.'">';
 	print '</td></tr>';
 
-	
+
 	if ($conf->global->MYLIST_CSV_EXPORT =="1")
-	{	
+	{
 		print '<tr><td>'.$langs->trans("ExportListCSV").'</td><td align=left >';
 		print $form->selectyesno('export',$object->export,1);
 		print '</td></tr>';
 	}
-	
+
 	if ($conf->global->MYLIST_ADDON_PDF)
 	{
 		// Load array def with activated templates
@@ -440,7 +440,7 @@ else
 	print_fiche_titre($langs->trans("EditMylist"));
 
 	dol_htmloutput_mesg($mesg);
-	
+
 	dol_fiche_head($head, 'list', $langs->trans("Mylist"),0,'list');
 
 	print '<table class="border" width="100%">';
@@ -474,7 +474,7 @@ else
 	 * Boutons actions de la liste
 	 */
 	print '<div class="tabsAction">';
-	
+
 	if ($user->rights->mylist->creer)
 		print '<a class="butAction" href="card.php?rowid='.$object->rowid.'&action=update">'.$langs->trans('Update').'</a>';
 	else
@@ -502,7 +502,7 @@ else
 
 	if (! empty($conf->use_javascript_ajax))
 	{
-		include DOL_DOCUMENT_ROOT.'/mylist/tpl/ajaxrow.tpl.php';
+		dol_include_once('/mylist/tpl/ajaxrow.tpl.php');
 	}
 
 	if(is_array($object->listsUsed))
