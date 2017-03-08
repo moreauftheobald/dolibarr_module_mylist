@@ -25,7 +25,7 @@ $res=@include("../main.inc.php");                    // For root directory
 if (! $res && file_exists($_SERVER['DOCUMENT_ROOT']."/main.inc.php"))
     $res=@include($_SERVER['DOCUMENT_ROOT']."/main.inc.php"); // Use on dev env only
 if (! $res) $res=@include("../../main.inc.php");        // For "custom" directory
-require_once DOL_DOCUMENT_ROOT.'/mylist/class/mylist.class.php';
+dol_include_once('/mylist/class/mylist.class.php')
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
 
 
@@ -105,7 +105,7 @@ if ($action == 'add' && $user->rights->mylist->creer)
 }
 elseif ($action == 'validate' && $user->rights->mylist->creer)
 {
-	// met à jour la liste
+	// met ï¿½ jour la liste
 	$object->code=		GETPOST("code");
 	$object->rowid=		GETPOST("rowid");
 	$object->label=		GETPOST("label");
@@ -349,7 +349,7 @@ elseif ($action == 'update' && $user->rights->mylist->creer)
 
 	// author
 	print '<tr><td>'.$langs->trans("author").'</td><td>';
-	// non modifiable si il est renseigné
+	// non modifiable si il est renseignï¿½
 	if ($object->author)
 		print '<input type="hidden" name="author" value="'.$object->author.'">'.$object->author;
 	else
@@ -485,7 +485,7 @@ else
 	else
 		print '<a class="butActionRefused" href="#" title="'.$langs->trans("NotAllowed").'">'.$langs->trans('ImportExport').'</a>';
 
-	// on autorise la suppression que sur les listes désactivés
+	// on autorise la suppression que sur les listes dï¿½sactivï¿½s
 	if ($user->rights->mylist->supprimer && !$object->active)
 		print '<a class="butAction" href="card.php?rowid='.$object->rowid.'&action=delete">'.$langs->trans('Delete').'</a>';
 	else

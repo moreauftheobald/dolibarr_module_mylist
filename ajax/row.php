@@ -33,7 +33,7 @@ if (! $res && file_exists($_SERVER['DOCUMENT_ROOT']."/main.inc.php"))
     $res=@include($_SERVER['DOCUMENT_ROOT']."/main.inc.php"); // Use on dev env only
 if (! $res) $res=@include("../../main.inc.php");        // For "custom" directory
 
-require_once DOL_DOCUMENT_ROOT.'/mylist/class/mylist.class.php';
+dol_include_once('/mylist/class/mylist.class.php')
 
 /*
  * View

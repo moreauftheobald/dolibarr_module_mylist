@@ -25,7 +25,7 @@ $res=@include("../main.inc.php");                    // For root directory
 if (! $res && file_exists($_SERVER['DOCUMENT_ROOT']."/main.inc.php"))
     $res=@include($_SERVER['DOCUMENT_ROOT']."/main.inc.php"); // Use on dev env only
 if (! $res) $res=@include("../../main.inc.php");        // For "custom" directory
-require_once DOL_DOCUMENT_ROOT.'/mylist/class/mylist.class.php';
+dol_include_once('/mylist/class/mylist.class.php')
 require_once DOL_DOCUMENT_ROOT."/core/lib/date.lib.php";
 
 $langs->load("mylist@mylist");
@@ -119,7 +119,7 @@ if ($action == 'add' && ! $_POST["cancel"] && $user->rights->mylist->creer)
 		$object->width		= GETPOST("width");
 		$object->filterinit	= GETPOST("filterinit");
 		
-		// récupération de la position du dernier champ
+		// rï¿½cupï¿½ration de la position du dernier champ
 		$object->pos		= $object->getlastpos($mylistid);
 		
 		$rowid = $object->addField($user, $mylistid);
@@ -271,7 +271,7 @@ if (! empty($rowid))
 	print '<tr><td >'.$langs->trans("FilterInit").'</td>';
 	print '<td><input type=text size=15 name="filterinit" value="'.$ArrayFields['filterinit'].'"></td></tr>'."\n";
 
-	// le champs supplémentaire pour la suite
+	// le champs supplï¿½mentaire pour la suite
 	if($conf->global->MAIN_MODULE_MYLISTMORE)
 	{
 		// sum
