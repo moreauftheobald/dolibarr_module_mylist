@@ -18,7 +18,7 @@
 /**
  *    \file       htdocs/mylist/index.php
  *    \ingroup    Liste
- *    \brief      Page liste des listes personnalisées
+ *    \brief      Page liste des listes personnalisï¿½es
  */
 
 $res=@include("../main.inc.php");                    // For root directory
@@ -26,7 +26,7 @@ if (! $res && file_exists($_SERVER['DOCUMENT_ROOT']."/main.inc.php"))
     $res=@include($_SERVER['DOCUMENT_ROOT']."/main.inc.php"); // Use on dev env only
 if (! $res) $res=@include("../../main.inc.php");        // For "custom" directory
 
-require_once DOL_DOCUMENT_ROOT.'/mylist/class/mylist.class.php';
+dol_includde_once('/mylist/class/mylist.class.php');
 
 $langs->load('mylist@mylist');
 
@@ -89,16 +89,16 @@ if (!empty($conf->global->MAIN_USE_JQUERY_DATATABLES))
 	print 'jQuery(document).ready(function() {'."\n";
 	print 'jQuery("#listtable").dataTable( {'."\n";
 
-	
+
 	print '"bPaginate": true,'."\n";
 	print '"bFilter": false,'."\n";
 	print '"sPaginationType": "full_numbers",'."\n";
-	print '"bJQueryUI": false,'."\n"; 
+	print '"bJQueryUI": false,'."\n";
 	print '"oLanguage": {"sUrl": "'.$langs->trans('datatabledict').'" },'."\n";
 	print '"iDisplayLength": 25,'."\n";
 	print '"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],'."\n";
 	print '"bSort": true,'."\n";
-	
+
 	print '} );'."\n";
 	print '});'."\n";
 	print '</script>'."\n";
