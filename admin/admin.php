@@ -28,7 +28,7 @@ if (! $res && file_exists("../../../main.inc.php")) $res=@include("../../../main
 
 
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
-require_once DOL_DOCUMENT_ROOT.'/mylist/core/lib/mylist.lib.php';
+dol_include_once('/mylist/core/lib/mylist.lib.php');
 
 $langs->load("admin");
 $langs->load("mylist@mylist");
@@ -99,7 +99,7 @@ else if ($action == 'setdoc')
 	}
 }
 
-// Get setting 
+// Get setting
 $nbrows=$conf->global->MYLIST_NB_ROWS;
 if ($nbrows=="")
 {
@@ -170,7 +170,7 @@ dol_fiche_head($head, 'admin', $langs->trans("myList"), 0, 'mylist@mylist');
 
 dol_htmloutput_mesg($mesg);
 
-// la sélection des status à suivre dans le process commercial
+// la sï¿½lection des status ï¿½ suivre dans le process commercial
 print '<br>';
 print_titre($langs->trans("GeneralSetting"));
 print '<br>';
