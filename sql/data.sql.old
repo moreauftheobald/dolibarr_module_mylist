@@ -1,0 +1,90 @@
+-- Copyright (C) 2013-2014	Charles-Fr Benke	<charles.fr@benke.fr>
+--
+-- This program is free software; you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation; either version 2 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+--
+--
+
+--
+-- Ne pas placer de commentaire en fin de ligne, ce fichier est parsé lors
+-- de l'install et tous les sigles '--' sont supprimés.
+--
+
+INSERT INTO `llx_mylist` ( `label`, `titlemenu`, `mainmenu`, `leftmenu`, `perms`, `langs`, `fieldinit`, `querydo`, `elementtab`, 
+ `fieldused`, `querylist`, `author`, `active`) VALUES
+   ( 'Factures Impayes', 'Impayes', 'accountancy', 'customers_bills', '$user->rights->facture->lire', 'bills', NULL, NULL, 'UPDATE llx_facture set SET fk_statut=2, paye=1 WHERE rowid=#ROWID#',
+ '{"1":{"field":"f.rowid","name":"ref","alias":"","type":"Check","elementfield":"Facture:/compta/facture/class/facture.class.php:facture:facnumber","align":"left","enabled":"true","visible":"true","filter":"false"},
+   "2":{"field":"f.ref_client","name":"RefClient","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"false","filter":"false"},
+   "3":{"field":"f.datef","name":"Date","alias":"","type":"Date","elementfield":"","align":"center","enabled":"true","visible":"true","filter":"true"},
+   "4":{"field":"f.date_lim_reglement","name":"DateDue","alias":"","type":"Date","elementfield":"","align":"center","enabled":"true","visible":"true","filter":"true"},
+   "5":{"field":"s.rowid","name":"Company","alias":"","type":"List","elementfield":"Societe::societe:nom","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "6":{"field":"f.total","name":"AmountHT","alias":"","type":"Number","elementfield":"","align":"right","enabled":"true","visible":"true","filter":"true"},
+   "7":{"field":"f.tva","name":"AmountVAT","alias":"","type":"Number","elementfield":"","align":"right","enabled":"true","visible":"true","filter":"false"},
+   "8":{"field":"f.total_ttc","name":"AmountTTC","alias":"","type":"Number","elementfield":"","align":"right","enabled":"true","visible":"true","filter":"true"},
+   "9":{"field":"f.fk_statut","name":"Status","alias":"","type":"Statut","elementfield":"Facture:/compta/facture/class/facture.class.php:0#1#2#P","align":"right","enabled":"true","visible":"true","filter":"true"}}',
+ 'FROM llx_societe as s, llx_facture as f\r\n WHERE f.fk_soc = s.rowid\r\n AND paye=0 AND fk_statut=1', 
+ 'patas-monkey.com', 0),
+ 
+( 'Avec contrat', 'Adhérents avec contrat', 'members', 'members', '', '', NULL, NULL, NULL,
+ '{"1":{"field":"a.rowid","name":"CodeEnt","alias":"","type":"Text","elementfield":"Adherent:/adherents/class/adherent.class.php","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "2":{"field":"a.lastname","name":"NOM","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "3":{"field":"a.lastname","name":"Prenom","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"false"},
+   "4":{"field":"a.societe","name":"societe","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "5":{"field":"a.zip","name":"C.Pos","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "6":{"field":"a.town","name":"Ville","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "7":{"field":"a.phone","name":"Tel 1","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "8":{"field":"a.phone_perso","name":"Tel 2","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "9":{"field":"a.phone_mobile","name":"Mobile","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "10":{"field":"a.email","name":"Mel","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "11":{"field":"a.datefin","name":"FinAdh","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "12":{"field":"concat(a.lastname,'' '',a.firstname)","name":"test","alias":"test","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"}}',
+ 'FROM llx_adherent as a, llx_adherent_extrafields as e, llx_adherent_type as at WHERE e.fk_object = a.rowid AND t.rowid = a.fk_adherent_type AND e.t_extra1 = ''VAL1'' AND e.inf2 > 300 ',
+ 'patas-monkey.com', 0),
+( 'Liste des commandes clients', 'CmdClient', 'commercial', 'orders', '$user->rights->commande->lire', 'orders:deliveries', NULL, NULL, 'Societe', 
+  '{"1":{"field":"c.ref","name":"ref","alias":"","type":"Text","elementfield":"","align":"left","enabled":"false","visible":"false","filter":"true"},
+    "2":{"field":"c.rowid","name":"commande","alias":"","type":"Text","elementfield":"Commande:/commande/class/commande.class.php","align":"left","enabled":"true","visible":"true","filter":"false"},
+    "3":{"field":"s.rowid","name":"IdCompany","alias":"socid","type":"List","elementfield":"Societe:","align":"left","enabled":"true","visible":"true","filter":"false"},
+    "4":{"field":"s.town","name":"Town","alias":null,"type":"Text","elementfield":null,"align":"left","enabled":"true","visible":"false","filter":"false"},
+    "5":{"field":"c.ref_client","name":"RefCustomerOrder","alias":null,"type":"Text","elementfield":null,"align":"left","enabled":"true","visible":"true","filter":"true"},
+    "6":{"field":"c.date_creation","name":"DateCreation","alias":"","type":"Date","elementfield":"","align":"center","enabled":"false","visible":"false","filter":"false"},
+    "7":{"field":"c.date_commande","name":"OrderDate","alias":null,"type":"Date","elementfield":null,"align":"center","enabled":"true","visible":"true","filter":"false"},
+    "8":{"field":"c.date_livraison","name":"DeliveryDate","alias":null,"type":"Date","elementfield":null,"align":"center","enabled":"true","visible":"true","filter":"true"},
+    "9":{"field":"c.total_ht","name":"TotalHT","alias":null,"type":"Number","elementfield":null,"align":"center","enabled":"true","visible":"false","filter":"false"},
+    "10":{"field":"c.total_ttc","name":"TotalTTC","alias":"","type":"Number","elementfield":"","align":"right","enabled":"true","visible":"true","filter":"true"},
+    "11":{"field":"c.facture","name":"facturee","alias":"facturee","type":"Number","elementfield":null,"align":"center","enabled":"true","visible":"false","filter":"false"},
+    "12":{"field":"c.fk_statut","name":"statut","alias":"","type":"Statut","elementfield":"Commande:/commande/class/commande.class.php:-1#0#1#2#3","align":"right","enabled":"true","visible":"true","filter":"true"}}',
+ ' FROM llx_societe as s, llx_commande as c LEFT JOIN llx_commandedet as cd ON c.rowid=cd.fk_commande LEFT JOIN llx_user as u ON c.fk_user_author = u.rowid, llx_societe_commerciaux as sc, llx_c_type_contact as tc  WHERE c.fk_soc = s.rowid AND s.rowid = sc.fk_soc ',
+ 'patas-monkey.com', 0),
+( 'Liste devis/propositions', 'myList', 'commercial', 'propals', '$user->rights->propale->lire', 'propal', NULL, NULL, NULL,
+ '{"1":{"field":"p.rowid","name":"Ref","alias":"propalid","type":"Text","elementfield":"Propal:/comm/propal/class/propal.class.php","align":"left","enabled":"true","visible":"true","filter":"false"},
+   "2":{"field":"s.rowid","name":"Company","alias":"socid","type":"List","elementfield":"Societe:","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "3":{"field":"s.zip","name":"Zip","alias":"zip","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"false"},
+   "4":{"field":"s.town","name":"Town","alias":null,"type":"Text","elementfield":null,"align":"left","enabled":"true","visible":"false","filter":"false"},
+   "5":{"field":"p.total_ht","name":"AmountHT","alias":null,"type":"Number","elementfield":null,"align":"center","enabled":"true","visible":"true","filter":"false"},
+   "6":{"field":"p.ref_client","name":"RefCustomer","alias":null,"type":"Text","elementfield":null,"align":"left","enabled":"true","visible":"false","filter":"false"},
+   "7":{"field":"p.datep","name":"Date","alias":"dp","type":"Date","elementfield":null,"align":"left","enabled":"true","visible":"true","filter":"true"},
+   "8":{"field":"p.fin_validite","name":"DateEndPropal","alias":"dfv","type":"Date","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"false"},
+   "9":{"field":"p.fk_user_author","name":"Author","alias":"","type":"List","elementfield":"user:login","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "10":{"field":"p.fk_statut","name":"statut","alias":"","type":"Statut","elementfield":"Propal:/comm/propal/class/propal.class.php:0#1#2#3#4","align":"right","enabled":"true","visible":"true","filter":"true"}}', 
+ ' FROM llx_societe as s, llx_propal as p LEFT JOIN llx_propaldet as pd ON p.rowid=pd.fk_propal LEFT JOIN llx_user as u ON p.fk_user_author = u.rowid, llx_societe_commerciaux as sc, llx_c_type_contact as tc  WHERE p.fk_soc = s.rowid AND s.rowid = sc.fk_soc ', 
+ 'patas-monkey.com', 0),
+( 'Liste des Services', 'myList', 'products', 'service', '$user->rights->service->lire', 'products', NULL, NULL, NULL,
+ '{"1":{"field":"p.rowid","name":"ref","alias":"","type":"List","elementfield":"Product:/product/class/product.class.php","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "2":{"field":"p.label","name":"label","alias":"","type":"Text","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "3":{"field":"p.price","name":"price","alias":"","type":"Number","elementfield":"","align":"left","enabled":"true","visible":"true","filter":"true"},
+   "4":{"field":"p.duration","name":"duration","alias":"","type":"Text","elementfield":"","align":"right","enabled":"true","visible":"true","filter":"true"},
+   "5":{"field":"p.price_ttc","name":"pricettc","alias":"","type":"Number","elementfield":"","align":"right","enabled":"true","visible":"true","filter":"true"},
+   "6":{"field":"p.tosell","name":"tosell","alias":"","type":"Boolean","elementfield":"","align":"center","enabled":"true","visible":"true","filter":"true"},
+   "7":{"field":"p.tva_tx","name":"tvatx","alias":"","type":"Number","elementfield":"","align":"center","enabled":"true","visible":"true","filter":"true"}}', 
+ 'FROM llx_product as p LEFT JOIN llx_product_extrafields as extra ON p.rowid = extra.fk_object WHERE p.fk_product_type = 1 AND p.entity IN (1)', 
+ 'patas-monkey.com', 0);

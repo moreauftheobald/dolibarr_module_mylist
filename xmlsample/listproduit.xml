@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='ISO-8859-1'?><mylist>
+<label>Liste des produits</label>
+<titlemenu>myList</titlemenu>
+<mainmenu>products</mainmenu>
+<leftmenu>product</leftmenu>
+<elementtab></elementtab>
+<perms>$user->rights->produit->lire</perms>
+<langs>product</langs>
+<export></export>
+<model_pdf></model_pdf>
+<author>patas-monkey.com</author>
+<querylist>
+FROM llx_product as p LEFT JOIN llx_product_extrafields as extra ON p.rowid = extra.fk_object WHERE p.fk_product_type = 0 AND p.entity IN (1)
+</querylist>
+<fieldinit>
+
+</fieldinit>
+<querydo>
+
+</querydo>
+<fields>
+	<field >
+	 	<name>ref</name>
+	 	<field>p.rowid</field>
+	 	<alias></alias>
+	 	<type>List</type>
+	 	<pos>1</pos>
+	 	<param>Product:/product/class/product.class.php</param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>label</name>
+	 	<field>p.label</field>
+	 	<alias></alias>
+	 	<type>Text</type>
+	 	<pos>2</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>DateModif</name>
+	 	<field>p.tms</field>
+	 	<alias></alias>
+	 	<type>Date</type>
+	 	<pos>3</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>pricettc</name>
+	 	<field>p.price_ttc</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>4</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>stock</name>
+	 	<field>p.stock</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>5</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>alertstock</name>
+	 	<field>p.seuil_stock_alerte</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>6</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>tosell</name>
+	 	<field>p.tosell</field>
+	 	<alias></alias>
+	 	<type>Boolean</type>
+	 	<pos>7</pos>
+	 	<param></param>
+	 	<align>center</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>tobuy</name>
+	 	<field>p.tobuy</field>
+	 	<alias></alias>
+	 	<type>Boolean</type>
+	 	<pos>8</pos>
+	 	<param></param>
+	 	<align>center</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>pmp</name>
+	 	<field>p.pmp</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>9</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+</fields>
+</mylist>

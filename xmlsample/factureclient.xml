@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='ISO-8859-1'?><mylist>
+<label>Facture Client</label>
+<titlemenu>myList</titlemenu>
+<mainmenu>accountancy</mainmenu>
+<leftmenu>customers_bills</leftmenu>
+<elementtab></elementtab>
+<perms>$user->rights->facture->lire</perms>
+<langs>bills</langs>
+<export>bills</export>
+<export>bills</export>
+<author>patas-monkey.com</author>
+<querylist>
+FROM llx_societe as s, llx_facture as f
+LEFT JOIN llx_paiement_facture as pf ON pf.fk_facture = f.rowid
+WHERE f.fk_soc = s.rowid
+
+</querylist>
+<fieldinit>
+
+</fieldinit>
+<querydo>
+
+</querydo>
+<fields>
+	<field >
+	 	<name>ref</name>
+	 	<field>f.rowid</field>
+	 	<alias></alias>
+	 	<type>List</type>
+	 	<pos>1</pos>
+	 	<param>Facture:/compta/facture/class/facture.class.php:facture:facnumber</param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>0</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>RefClient</name>
+	 	<field>f.ref_client</field>
+	 	<alias></alias>
+	 	<type>Text</type>
+	 	<pos>2</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>0</visible>
+	 	<filter>0</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>Date</name>
+	 	<field>f.datef</field>
+	 	<alias></alias>
+	 	<type>Date</type>
+	 	<pos>3</pos>
+	 	<param></param>
+	 	<align>center</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>DateDue</name>
+	 	<field>f.date_lim_reglement</field>
+	 	<alias></alias>
+	 	<type>Date</type>
+	 	<pos>4</pos>
+	 	<param></param>
+	 	<align>center</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>Company</name>
+	 	<field>s.rowid</field>
+	 	<alias></alias>
+	 	<type>List</type>
+	 	<pos>5</pos>
+	 	<param>Societe::societe:nom</param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>AmountHT</name>
+	 	<field>f.total</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>6</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>AmountVAT</name>
+	 	<field>f.tva</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>7</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>0</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>AmountTTC</name>
+	 	<field>f.total_ttc</field>
+	 	<alias></alias>
+	 	<type>Number</type>
+	 	<pos>8</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>Status</name>
+	 	<field>f.fk_statut</field>
+	 	<alias></alias>
+	 	<type>Statut</type>
+	 	<pos>9</pos>
+	 	<param>Facture:/compta/facture/class/facture.class.php:0#1#2#P</param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+</fields>
+</mylist>

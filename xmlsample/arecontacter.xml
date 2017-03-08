@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='ISO-8859-1'?><mylist>
+<label>A recontacter</label>
+<titlemenu>client </titlemenu>
+<mainmenu>companies</mainmenu>
+<leftmenu>thirdparties</leftmenu>
+<elementtab></elementtab>
+<perms></perms>
+<langs></langs>
+<export></export>
+<export></export>
+<author>patas-monkey.com</author>
+<querylist>
+FROM  llx_societe as s, llx_facture as f 
+WHERE s.rowid = f.fk_soc
+AND date_format(datef, '%Y%m') >= date_format(DATE_ADD(now() ,INTERVAL -#MYLISTFIELD1# MONTH), '%Y%m')
+AND s.zip like '#MYLISTFIELD2#%'
+GROUP BY s.rowid
+Having CA > #MYLISTFIELD3#
+</querylist>
+<fieldinit>
+MYLISTFIELD1=7:MYLISTFIELD2=69:MYLISTFIELD3=2000
+</fieldinit>
+<querydo>
+
+</querydo>
+<fields>
+	<field >
+	 	<name>client</name>
+	 	<field>s.rowid</field>
+	 	<alias>client</alias>
+	 	<type>List</type>
+	 	<pos>1</pos>
+	 	<param>Societe::societe:nom</param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>0</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>name</name>
+	 	<field>s.nom</field>
+	 	<alias>name</alias>
+	 	<type>Text</type>
+	 	<pos>2</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>town</name>
+	 	<field>s.town</field>
+	 	<alias></alias>
+	 	<type>Text</type>
+	 	<pos>3</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>zip</name>
+	 	<field>s.zip</field>
+	 	<alias>zip</alias>
+	 	<type>Text</type>
+	 	<pos>4</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>phone</name>
+	 	<field>s.phone</field>
+	 	<alias>phone</alias>
+	 	<type>Text</type>
+	 	<pos>5</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>nbfact</name>
+	 	<field>count(*)</field>
+	 	<alias>nbFact</alias>
+	 	<type>Number</type>
+	 	<pos>6</pos>
+	 	<param></param>
+	 	<align>left</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>1</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+	<field >
+	 	<name>CA</name>
+	 	<field>sum(total_ttc)</field>
+	 	<alias>CA</alias>
+	 	<type>Number</type>
+	 	<pos>7</pos>
+	 	<param></param>
+	 	<align>right</align>
+	 	<enabled>1</enabled>
+	 	<sumreport></sumreport>
+	 	<avgreport></avgreport>
+	 	<visible>1</visible>
+	 	<filter>0</filter>
+	 	<width>0</width>
+	 	<filterinit></filterinit>
+	</field>
+</fields>
+</mylist>
